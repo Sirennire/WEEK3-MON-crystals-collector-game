@@ -75,7 +75,7 @@ $(document).ready(function(){
 
     //Generates a random number between 1-100 at the beginning of the game for the player to match. 
     //$("#random-button").on("click", function() {
-        var random = Math.floor(Math.random() * 100) + 1;
+        var random = Math.floor(Math.random() * (120 - 19) ) + 19;
         //Displays the number in the random-number div.
         $("#random-number").text(random);
         //Gives this number a value and declares that value a variable.
@@ -84,10 +84,14 @@ $(document).ready(function(){
         console.log(numberValue);
 
         //Declares variable values for each gem button...
-        var gem1Value = 20;  
-        var gem2Value = 1; 
-        var gem3Value = 5; 
-        var gem4Value = 10; 
+        var gem1Value = Math.floor(Math.random() * (12 - 1) ) + 1; 
+            console.log(gem1Value);
+        var gem2Value = Math.floor(Math.random() * (12 - 1) ) + 1;
+            console.log(gem2Value);
+        var gem3Value = Math.floor(Math.random() * (12 - 1) ) + 1; 
+            console.log(gem3Value);
+        var gem4Value = Math.floor(Math.random() * (12 - 1) ) + 1;
+            console.log(gem4Value);
 
         //Declares variable values for the player total, wins, and losses...
         var playerTotal = 0; 
@@ -96,7 +100,7 @@ $(document).ready(function(){
         
         //Creates a function to reset the game...
         function ResetGlobalVariables(){
-            var random = Math.floor(Math.random() * 100) + 1;
+            var random = Math.floor(Math.random() * (120 - 19) ) + 19;
             //Displays the number in the random-number div.
             $("#random-number").text(random);
             //Gives this number a value and declares that value a variable.
@@ -104,10 +108,10 @@ $(document).ready(function(){
             //prints the numberValue for testing.
             console.log(numberValue);
             //list of all the variables with original attributes here
-            gem1Value = 20;  
-            gem2Value = 1; 
-            gem3Value = 5; 
-            gem4Value = 10;
+            ggem1Value = Math.floor(Math.random() * (12 - 1) ) + 1; 
+            gem2Value = Math.floor(Math.random() * (12 - 1) ) + 1;
+            gem3Value = Math.floor(Math.random() * (12 - 1) ) + 1; 
+            gem4Value = Math.floor(Math.random() * (12 - 1) ) + 1;
             playerTotal = 0; 
             $("#total").text("Total: " + playerTotal);
         }
