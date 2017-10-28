@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<style>
+
+	body {
+		background-image: url("assets/images/congruent_pentagon.png");
+		text-align: center;
+	}
+
+    h1, h3, h2 {
+        color: darkgreen;
+    }
+
+	</style>
+	<script src="https://code.jquery.com/jquery.js"></script>
+
+</head>
+
+<body>
+    <br><br>
+    <div class="container">
+
+    <div class="row">
+
+        <div class="col-lg-2">
+        </div>
+
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Click on a gem to add to yout total!</h1>
+                </div>
+
+                <div class="panel-body">
+                    <img id="gem-4" height="175px" src="assets/images/item_icon_dia150.png" class="btn btn-gem" value="1">
+                    <img id="gem-2" height="130px" src="assets/images/greendiamond.png" class="btn btn-gem" value="10">
+                    <img id="gem-3" height="175px" src="assets/images/green-gem.png" class="btn btn-gem" value="5">
+                   <img id="gem-1" height="175px" src="assets/images/green5.png" class="btn btn-gem" value="20">
+                </div>
+                </div>
+            </div>
+
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 id="random-button" class="panel-title btn">Click HERE to Generate a Random Number!</h2>
+                </div>
+            <div class="panel-body">
+                <h1 id="first-number">0</h1>
+                <hr>
+                <h1 id="second-number">Total: </h1>
+                <hr>
+                <h1 id="result">Result: </h1>
+            </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2">
+        </div>
+
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        var firstNumber = "";
+        var secondNumber = "";
+
+        $("#random-button").on("click", function() {
+            var random = Math.floor(Math.random() * 100) + 1;
+            $("#first-number").text(random);
+            var numberValue = ($(this).attr("value"));
+        });
+
+        $(".btn-gem").on("click", function() {
+            var numberValue = ($(this).attr("value"));
+            console.log(numberValue);
+            secondNumber += numberValue;
+            $("#second-number").text("Total: " + parseInt(secondNumber));
+            console.log(secondNumber);
+
+            if ("#first-number" === "#second-number") {
+                $("#result").text("You win!");
+            }
+
+            if ((parseInt("#first-number")) < (parseInt(secondNumber))) {
+                $("#result").text("You lose!");
+            }
+        });
+ 
+    })
+
+</script>
+</html>
