@@ -35,14 +35,14 @@
         <div class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h1 class="panel-title">Click on a gem to add to yout total!</h1>
+                    <h1 class="panel-title">Click on a gem to add to your total</h1>
                 </div>
 
                 <div class="panel-body">
-                    <img id="gem-4" height="175px" src="assets/images/item_icon_dia150.png" class="btn btn-gem" value="1">
-                    <img id="gem-2" height="130px" src="assets/images/greendiamond.png" class="btn btn-gem" value="10">
-                    <img id="gem-3" height="175px" src="assets/images/green-gem.png" class="btn btn-gem" value="5">
-                   <img id="gem-1" height="175px" src="assets/images/green5.png" class="btn btn-gem" value="20">
+                    <img id="gem1" height="200px" src="assets/images/item_icon_dia150.png" class="btn btn-gem" value="1">
+                    <img id="gem2" height="150px" src="assets/images/greendiamond.png" class="btn btn-gem" value="10">
+                    <img id="gem3" height="200px" src="assets/images/green-gem.png" class="btn btn-gem" value="5">
+                   <img id="gem4" height="225px" src="assets/images/Plumbob.png" class="btn btn-gem" value="20">
                 </div>
                 </div>
             </div>
@@ -50,14 +50,14 @@
         <div class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h2 id="random-button" class="panel-title btn">Click HERE to Generate a Random Number!</h2>
+                    <h2 id="random-button" class="panel-title btn">Match your total to the number below!</h2>
                 </div>
             <div class="panel-body">
-                <h1 id="first-number">0</h1>
+                <h1 id="random-number">0</h1>
+                <h1 id="total">Total: 0</h1>
                 <hr>
-                <h1 id="second-number">Total: </h1>
-                <hr>
-                <h1 id="result">Result: </h1>
+                <h1 id="player-wins">Wins: </h1>
+                <h1 id="player-losses">Losses: </h1>
             </div>
             </div>
         </div>
@@ -71,34 +71,212 @@
 
 <script type="text/javascript">
 
-    $(document).ready(function(){
+$(document).ready(function(){
+    //var firstNumber = ""; *OLD CODE*
+    //var secondNumber = ""; *OLD CODE*
 
-        var firstNumber = "";
-        var secondNumber = "";
+    //Generates a random number between 1-100 at the beginning of the game for the player to match. 
+    //$("#random-button").on("click", function() {
+        var random = Math.floor(Math.random() * 100) + 1;
+        //Displays the number in the random-number div.
+        $("#random-number").text(random);
+        //Gives this number a value and declares that value a variable.
+        var numberValue = parseInt(random);
+        //prints the numberValue for testing.
+        console.log(numberValue);
 
-        $("#random-button").on("click", function() {
+        //Declares variable values for each gem button...
+        var gem1Value = 20;  
+        var gem2Value = 1; 
+        var gem3Value = 5; 
+        var gem4Value = 10; 
+
+        //Declares variable values for the player total, wins, and losses...
+        var playerTotal = 0; 
+        var playerWins = 0; 
+        var playerLosses = 0;
+        
+        //Creates a function to reset the game...
+        function ResetGlobalVariables(){
             var random = Math.floor(Math.random() * 100) + 1;
-            $("#first-number").text(random);
-            var numberValue = ($(this).attr("value"));
-        });
-
-        $(".btn-gem").on("click", function() {
-            var numberValue = ($(this).attr("value"));
+            //Displays the number in the random-number div.
+            $("#random-number").text(random);
+            //Gives this number a value and declares that value a variable.
+            numberValue = parseInt(random);
+            //prints the numberValue for testing.
             console.log(numberValue);
-            secondNumber += numberValue;
-            $("#second-number").text("Total: " + parseInt(secondNumber));
-            console.log(secondNumber);
+            //list of all the variables with original attributes here
+            gem1Value = 20;  
+            gem2Value = 1; 
+            gem3Value = 5; 
+            gem4Value = 10;
+            playerTotal = 0; 
+            $("#total").text("Total: " + playerTotal);
+        }
 
-            if ("#first-number" === "#second-number") {
-                $("#result").text("You win!");
-            }
+        //Creates a function for when the player clicks on the first gem. 
+        $("#gem1").on("click", function() {
+            //Adds the value of the first gem to the player total. 
+            playerTotal = playerTotal + gem1Value; 
+            //Console logs the current player's total. 
+            console.log("New total= " + playerTotal);
+            //Displays the player's total in the total div.
+            $("#total").text("Total: " + playerTotal);
 
-            if ((parseInt("#first-number")) < (parseInt(secondNumber))) {
-                $("#result").text("You lose!");
+            //Sets up the win condition for the first-gem click...
+            if (playerTotal === numberValue){
+                //Alerts the player of the win.
+                alert("You win! Let's play again!");
+                //Adds 1 to the player's win total.
+                playerWins++; 
+                //Diplays the new win total.
+                $("#player-wins").text("Wins: " + playerWins);
+                //Resets the game.
+                ResetGlobalVariables();
+                console.log(playerTotal);
+                console.log(numberValue);
             }
+            //Sets up the loss condition for the first-gem click...
+            else if (playerTotal > numberValue){
+                //Alerts the player of the loss.
+                alert("You lose this round. Let's try again!");
+                //Adds 1 to the player's loss total.
+                playerLosses++; 
+                //Diplays the new loss total.
+                $("#player-losses").text("Losses: " + playerLosses);
+                //Resets the game.
+                ResetGlobalVariables();
+                console.log(playerTotal);
+                console.log(numberValue);
+            } 
         });
- 
+
+        $("#gem2").on("click", function() {
+            //Adds the value of the second gem to the player total. 
+            playerTotal = playerTotal + gem2Value; 
+            //console logs the current player's total. 
+            console.log("New total= " + playerTotal);
+            //Displays the player's total in the total div.
+            $("#total").text("Total: " + playerTotal);
+
+            //Sets up the win condition for the second-gem click...
+            if (playerTotal === numberValue){
+                //Alerts the player of the win.
+                alert("You win! Let's play again!");
+                //Adds 1 to the player's win total.
+                playerWins++; 
+                //Diplays the new win total.
+                $("#player-wins").text("Wins: " + playerWins);
+                //Resets the game.
+                ResetGlobalVariables();
+                console.log(playerTotal);
+                console.log(numberValue);
+            }
+            //Sets up the loss condition for the second-gem click...
+            else if (playerTotal > numberValue){
+                //Alerts the player of the loss.
+                alert("You lose this round. Let's try again!");
+                //Adds 1 to the player's loss total.
+                playerLosses++; 
+                //Diplays the new loss total.
+                $("#player-losses").text("Losses: " + playerLosses);
+                //Resets the game.
+                ResetGlobalVariables();
+                console.log(playerTotal);
+                console.log(numberValue);
+            } 
+        });
+        
+        $("#gem3").on("click", function() {
+            //Adds the value of the third gem to the player total. 
+            playerTotal = playerTotal + gem3Value; 
+            //Console logs the current player's total. 
+            console.log("New total= " + playerTotal);
+            //Displays the player's total in the total div.
+            $("#total").text("Total: " + playerTotal);
+            //Sets up the win condition for the third-gem click...
+            if (playerTotal === numberValue){
+                    //Alerts the player of the win.
+                    alert("You win! Let's play again!");
+                    //Adds 1 to the player's win total.
+                    playerWins++; 
+                    //Diplays the new win total.
+                    $("#player-wins").text("Wins: " + playerWins);
+                    //Resets the game.
+                    ResetGlobalVariables();
+                    console.log(playerTotal);
+                    console.log(numberValue);
+                }
+            //Sets up the loss condition for the third-gem click...
+            else if (playerTotal > numberValue){
+                //Alerts the player of the loss.
+                alert("You lose this round. Let's try again!");
+                //Adds 1 to the player's loss total.
+                playerLosses++; 
+                //Diplays the new loss total.
+                $("#player-losses").text("Losses: " + playerLosses);
+                //Resets the game.
+                ResetGlobalVariables();
+                console.log(playerTotal);
+                console.log(numberValue);
+            } 
+        });
+        
+        $("#gem4").on("click", function() {
+            //Adds the value of the fourth gem to the player total. 
+            playerTotal = playerTotal + gem4Value; 
+            //Console logs the current player's total. 
+            console.log("New total= " + playerTotal);
+            //Displays the player's total in the total div.
+            $("#total").text("Total: " + playerTotal);
+            //Sets up the win condition for the fourth-gem click...
+            if (playerTotal === numberValue){
+                //Alerts the player of the win.
+                alert("You win! Let's play again!");
+                //Adds 1 to the player's win total.
+                playerWins++; 
+                //Diplays the new win total.
+                $("#player-wins").text("Wins: " + playerWins);
+                //Resets the game.
+                ResetGlobalVariables();
+                console.log(playerTotal);
+                console.log(numberValue);
+            }
+            //Sets up the loss condition for the fourth-gem click...
+            else if (playerTotal > numberValue){
+                //Alerts the player of the loss.
+                alert("You lose this round. Let's try again!");
+                //Adds 1 to the player's loss total.
+                playerLosses++; 
+                //Diplays the new loss total.
+                $("#player-losses").text("Losses: " + playerLosses);
+                //Resets the game.
+                ResetGlobalVariables();
+                console.log(playerTotal);
+                console.log(numberValue);
+            } 
+        });
     })
+
+        //*OLD CODE*
+        //$(".btn-gem").on("click", function() { 
+            //var numberValue = ($(this).attr("value"));
+            //console.log(numberValue);
+            //secondNumber += numberValue;
+            //$("#second-number").text("Total: " + parseInt(secondNumber));
+            //console.log(secondNumber);
+        //*OLD CODE*
+            //if ("#first-number" === "#second-number") {
+                //$("#result").text("You win!");
+            //}
+        //*OLD CODE*
+            //if ((parseInt("#first-number")) < (parseInt(secondNumber))) {
+                //$("#result").text("You lose!");
+            //}
+        //});
+        //*OLD CODE*
+
+
 
 </script>
 </html>
