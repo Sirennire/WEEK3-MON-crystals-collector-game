@@ -93,6 +93,11 @@ $(document).ready(function(){
         var gem4Value = Math.floor(Math.random() * (12 - 1) ) + 1;
             console.log(gem4Value);
 
+        var audio1 = new Audio("assets/images/gem1.mp3");
+        var audio2 = new Audio("assets/images/gem2.mp3");
+        var audio3 = new Audio("assets/images/gem3.mp3");
+        var audio4 = new Audio("assets/images/gem4.mp3");
+
         //Declares variable values for the player total, wins, and losses...
         var playerTotal = 0; 
         var playerWins = 0; 
@@ -124,6 +129,8 @@ $(document).ready(function(){
             console.log("New total= " + playerTotal);
             //Displays the player's total in the total div.
             $("#total").text("Total: " + playerTotal);
+
+            audio1.play();
 
             //Sets up the win condition for the first-gem click...
             if (playerTotal === numberValue){
@@ -161,6 +168,8 @@ $(document).ready(function(){
             //Displays the player's total in the total div.
             $("#total").text("Total: " + playerTotal);
 
+            audio2.play();
+
             //Sets up the win condition for the second-gem click...
             if (playerTotal === numberValue){
                 //Alerts the player of the win.
@@ -196,6 +205,9 @@ $(document).ready(function(){
             console.log("New total= " + playerTotal);
             //Displays the player's total in the total div.
             $("#total").text("Total: " + playerTotal);
+
+            audio3.play();
+
             //Sets up the win condition for the third-gem click...
             if (playerTotal === numberValue){
                     //Alerts the player of the win.
@@ -231,6 +243,9 @@ $(document).ready(function(){
             console.log("New total= " + playerTotal);
             //Displays the player's total in the total div.
             $("#total").text("Total: " + playerTotal);
+
+                 audio4.play();
+
             //Sets up the win condition for the fourth-gem click...
             if (playerTotal === numberValue){
                 //Alerts the player of the win.
